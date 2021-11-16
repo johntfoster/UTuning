@@ -1,5 +1,5 @@
 =================================
-Hyperparameter Uncertainty Tuning (UTuning)
+Hyperparameter Uncertainty Tuning
 =================================
 
 
