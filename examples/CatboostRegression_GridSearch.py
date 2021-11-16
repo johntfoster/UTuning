@@ -6,7 +6,7 @@ Created on Mon Sep 20 16:15:37 2021
 """
 import sys
 #sys.path.insert(0, r'C:\Users\eduar\OneDrive\PhD\UTuning')
-sys.path.insert(0, r'C:\Users\em42363\OneDrive\PhD\UTuning')
+#sys.path.insert(0, r'C:\Users\em42363\OneDrive\PhD\UTuning')
 
 from UTuning import scorer, plots, UTuning
 
@@ -20,12 +20,13 @@ import pandas as pd
 
 import numpy as np
 
-import os
-os.chdir(os.path.dirname(__file__))
+#import os
+#os.chdir(os.path.dirname(__file__))
 
 
+df = pd.read_csv("https://raw.githubusercontent.com/emaldonadocruz/UTuning/master/dataset/unconv_MV.csv") #
 #df = pd.read_csv(r'C:\Users\eduar\OneDrive\PhD\UTuning\dataset\unconv_MV.csv')
-df = pd.read_csv(r'C:\Users\em42363\OneDrive\PhD\UTuning\dataset\unconv_MV.csv')
+#df = pd.read_csv(r'C:\Users\em42363\OneDrive\PhD\UTuning\dataset\unconv_MV.csv')
 
 
 # %% Split train test
