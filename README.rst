@@ -22,10 +22,6 @@ Hyperparameter Uncertainty Tuning (UTuning)
 
 Uncertainty Tuning (UTuning) is a package that focuses on summarizing uncertainty model performance for optimum hyperparameter tuning by using the uncertainty model goodness metric.
 
-<p align="center">
-<img src="https://github.com/emaldonadocruz/Images/blob/535d6ab6bdbd86577638c3b1a5e275e0b7b258df/CrossVal.png" width="1000px"></img>
-</p>
-
 * Free software: BSD license
 * Documentation: https://UTuning.readthedocs.io.
 
