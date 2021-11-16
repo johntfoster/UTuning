@@ -4,7 +4,7 @@ Created on Mon Sep 20 16:15:37 2021
 
 @author: em42363
 """
-import sys
+#import sys
 #sys.path.insert(0, r'C:\Users\eduar\OneDrive\PhD\UTuning')
 #sys.path.insert(0, r'C:\Users\em42363\OneDrive\PhD\UTuning')
 
@@ -51,8 +51,8 @@ print(X_train.shape, y_train.shape)
 We define the model and the grid search space,
 we pass the model and the grid search.
 '''
-n_estimators = np.arange(80, 150, step=10)
-lr = np.arange(0.01, 0.15, step=.03)
+n_estimators = np.arange(80, 150, step=10) #80 150
+lr = np.arange(0.01, 0.15, step=.01) #0.1 0.15
 param_grid = {
     "learning_rate": list(lr),
     "n_estimators": list(n_estimators)

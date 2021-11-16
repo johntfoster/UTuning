@@ -1,10 +1,16 @@
 # Hyperparameter Uncertainty Tuning
-[![pytest](https://github.com/ray-project/tune-sklearn/workflows/Development/badge.svg)](https://github.com/ray-project/tune-sklearn/actions?query=workflow%3A%22Development%22)
 
 Uncertainty Tuning (UTuning) is a package that focuses on summarizing uncertainty model performance for optimum hyperparameter tuning.
 
+<p align="center">
+    <img src="https://raw.githubusercontent.com/emaldonadocruz/UTuning/master/figures/CrossVal.png"/>
+</p>
+
+In the figure we show a comparison of the cross-validation plot and respective accuracy plot for two uncertainty models where the hyperparameters were optimized using different objective functions. a) Using MAE, b) Uncertainty model goodness.
+Both models have a high Pearson's correlation coefficient yet model in b) is a better uncertainty model.
+
 ## Features
-Here’s what UTuning has to offer:
+This is what UTuning has to offer:
 
 * Hyperparameter tuning for ensemble based uncertainty models
 * Robust uncertainty evaluation
@@ -23,9 +29,13 @@ Here’s what UTuning has to offer:
 
 ## Examples
 
-#### TuneGridSearchCV
+### Tune Machine Learning model with GridSearchCV
+In this first example we use Catboost as ensemble learner for predictions of production.
 
-To start out, it’s as easy as changing our import statement to get UTuning grid search cross validation interface, and the rest is almost identical!
+For this notebook example we have a problem that consists on predicting **permeability** from **porosity** and **acoustic impedance data**. We have selected this problem because we are primarily interested in capturing the uncertainty related to predictions of permeability based on existing data. 
+This problem can be expanded to any prediction problem.
+
+To start out, change our import statement to get UTuning grid search cross validation interface, and the rest is almost identical!
 
 ```python
 
@@ -94,11 +104,19 @@ plots.surface(df['param_n_estimators'],
               (-1)*df['split0_test_score'],
               30,
               labels)
-
-
 ```
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/emaldonadocruz/UTuning/master/figures/CrossVal.png" width="220" height="240" />
-
+    <img src="https://raw.githubusercontent.com/emaldonadocruz/UTuning/master/figures/SearchSpace.png"/>
 </p>
+
+### Credits
+-------
+The dataset used for the examples is provided by Dr. Michael Pyrcz, GeostatsGuy: https://github.com/GeostatsGuy
+
+This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+
+Cookiecutter: https://github.com/audreyr/cookiecutter
+`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+
+

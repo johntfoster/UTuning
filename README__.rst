@@ -13,7 +13,6 @@ Hyperparameter Uncertainty Tuning
         :target: https://UTuning.readthedocs.io/en/latest/?version=latest
         :alt: Documentation Status
 
-
 .. image:: https://pyup.io/repos/github/emaldonadocruz/UTuning/shield.svg
      :target: https://pyup.io/repos/github/emaldonadocruz/UTuning/
      :alt: Updates
