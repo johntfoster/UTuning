@@ -107,6 +107,17 @@ plots.surface(df['param_n_estimators'],
 ```
 
 <p align="center">
+    <img src="https://raw.githubusercontent.com/emaldonadocruz/UTuning/master/figures/Catboost_Accuracy_plot.png"/>
+</p>
+
+<p align="center">
+    <img src="https://raw.githubusercontent.com/emaldonadocruz/UTuning/master/figures/Catboost_example.png"/>
+</p>
+
+
+A second example using neural networks is coming soon.
+
+<p align="center">
     <img src="https://raw.githubusercontent.com/emaldonadocruz/UTuning/master/figures/SearchSpace.png"/>
 </p>
 
