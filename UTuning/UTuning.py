@@ -39,7 +39,7 @@ def RandomizedSearch(model, param_grid, cv=2, n_iter=10):
 
 def GridSearch(model, param_grid, cv):
 
-    score = make_scorer(Goodness_loss, greater_is_better=False)
+    score = make_scorer(Goodness_loss, greater_is_better=True)
 
     random_cv = GridSearchCV(model,
                             param_grid,
@@ -93,6 +93,6 @@ def Goodness_loss(y_true, y_pred):
     Accuracy = integrate.simps(a, perc)
     d = y_true - y_pred[:,0]
     mae = np.mean(abs(d))
-    return (0.5*(1-Accuracy) + 0.5*mae)
+    return Goodness
     #return (0.95*(mae) + 0.05*(1-Goodness))
     #return mae
