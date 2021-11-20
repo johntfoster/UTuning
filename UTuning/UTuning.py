@@ -90,9 +90,9 @@ def Goodness_loss(y_true, y_pred):
     
     Sum = (3*a-2)*(avgIndFunc-perc)
     Goodness = 1-integrate.simps(Sum, perc)
-    Accuracy = integrate.simps(a, perc)
-    d = y_true - y_pred[:,0]
-    mae = np.mean(abs(d))
+    #Accuracy = integrate.simps(a, perc)
+    #d = y_true - y_pred[:,0]
+    #mae = np.mean(abs(d))
     return Goodness
     #return (0.95*(mae) + 0.05*(1-Goodness))
     #return mae
