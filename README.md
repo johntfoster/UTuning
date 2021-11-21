@@ -39,13 +39,17 @@ To start out, change our import statement to get UTuning grid search cross valid
 
 ```python
 
-from UTuning import scorer, plots, UTuning
+
+@author: em42363
+"""
+from UTuning import scorer, plots, UTSearch
 
 from catboost import CatBoostRegressor ## Decision-tree based gradient boosting
 # Prediction model in the form of an ensemble of weak prediction models
 
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
+
 import pandas as pd
 import numpy as np
 
