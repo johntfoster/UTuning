@@ -4,11 +4,11 @@ Created on Mon Sep 20 16:15:37 2021
 
 @author: em42363
 """
-#import sys
+import sys
 #sys.path.insert(0, r'C:\Users\eduar\OneDrive\PhD\UTuning')
-#sys.path.insert(0, r'C:\Users\em42363\OneDrive\PhD\UTuning')
+sys.path.insert(0, r'C:\Users\em42363\OneDrive\PhD\UTuning')
 
-from UTuning import scorer, plots, UTuning
+from UTuning import scorer, plots, UTSearch
 
 from catboost import CatBoostRegressor ## Decision-tree based gradient boosting
 # Prediction model in the form of an ensemble of weak prediction models
@@ -51,8 +51,8 @@ print(X_train.shape, y_train.shape)
 We define the model and the grid search space,
 we pass the model and the grid search.
 '''
-n_estimators = np.arange(80, 150, step=10) #80 150
-lr = np.arange(0.01, 0.15, step=.01) #0.1 0.15
+n_estimators = np.arange(180, 220, step=1) #80 150
+lr = np.arange(0.035, 0.06, step=.001) #0.1 0.15
 param_grid = {
     "learning_rate": list(lr),
     "n_estimators": list(n_estimators)
@@ -61,7 +61,7 @@ param_grid = {
 model = CatBoostRegressor(loss_function='RMSEWithUncertainty',
                           verbose=False)
 
-random_cv = UTuning.GridSearch(model, param_grid, 2)
+random_cv = UTSearch.Grid(model, param_grid, 2)
 
 random_cv.fit(X_train, y_train)
 # %%Surface
@@ -77,7 +77,7 @@ labels = {'x': 'n estimators',
 
 plots.surface(df['param_n_estimators'],
               df['param_learning_rate'],
-              (-1)*df['split0_test_score'],
+              df['split0_test_score'],
               30,
               labels)
 
@@ -105,7 +105,7 @@ perc = np.linspace(0.0, 1.00, n_quantiles)
 Next, we use the best parameters to construct and evaluate our model.
 '''
 
-Samples = 25
+Samples = 50
 
 ens_preds = virt_ensemble(X_train,
                           y_train,

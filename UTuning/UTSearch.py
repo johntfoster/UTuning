@@ -2,13 +2,14 @@
 
 from UTuning import scorer
 import numpy as np
-import sys
+
 from sklearn.metrics import make_scorer, mean_absolute_error
 from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
 import scipy.integrate as integrate
 
 #sys.path.insert(0, r'C:\Users\eduar\OneDrive\PhD\UTuning')
-sys.path.insert(0, r'C:\Users\em42363\OneDrive\PhD\UTuning')
+#import sys
+#sys.path.insert(0, r'C:\Users\em42363\OneDrive\PhD\UTuning')
 
 
 # def GridSearchKeras(model, param_grid):
@@ -37,7 +38,7 @@ def RandomizedSearch(model, param_grid, cv=2, n_iter=10):
                                    verbose = 2)
     return random_cv
 
-def GridSearch(model, param_grid, cv):
+def Grid(model, param_grid, cv):
 
     score = make_scorer(Goodness_loss, greater_is_better=True)
 
@@ -90,9 +91,11 @@ def Goodness_loss(y_true, y_pred):
     
     Sum = (3*a-2)*(avgIndFunc-perc)
     Goodness = 1-integrate.simps(Sum, perc)
-    #Accuracy = integrate.simps(a, perc)
+    Accuracy = integrate.simps(a, perc)
+    Prec = a*(avgIndFunc-perc)
+    Precision = 1-2*integrate.simps(Prec, perc)
     #d = y_true - y_pred[:,0]
     #mae = np.mean(abs(d))
-    return Goodness
+    return (Goodness + Accuracy + Precision)/3
     #return (0.95*(mae) + 0.05*(1-Goodness))
     #return mae
