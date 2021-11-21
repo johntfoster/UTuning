@@ -73,9 +73,8 @@ print(X_train.shape, y_train.shape)
 We define the model and the grid search space,
 we pass the model and the grid search.
 '''
-
-n_estimators = np.arange(80, 150, step=10)
-lr = np.arange(0.01, 0.15, step=.03)
+n_estimators = np.arange(180, 220, step=1) #80 150
+lr = np.arange(0.035, 0.06, step=.001) #0.1 0.15
 param_grid = {
     "learning_rate": list(lr),
     "n_estimators": list(n_estimators)
@@ -84,10 +83,9 @@ param_grid = {
 model = CatBoostRegressor(loss_function='RMSEWithUncertainty',
                           verbose=False)
 
-random_cv = UTuning.GridSearch(model, param_grid, 2)
+random_cv = UTSearch.Grid(model, param_grid, 2)
 
 random_cv.fit(X_train, y_train)
-
 # %%Surface
 '''
 Similarly as in the problem with neural networks we can evaluate the
@@ -101,7 +99,7 @@ labels = {'x': 'n estimators',
 
 plots.surface(df['param_n_estimators'],
               df['param_learning_rate'],
-              (-1)*df['split0_test_score'],
+              df['split0_test_score'],
               30,
               labels)
 ```

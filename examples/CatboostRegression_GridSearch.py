@@ -4,10 +4,6 @@ Created on Mon Sep 20 16:15:37 2021
 
 @author: em42363
 """
-import sys
-#sys.path.insert(0, r'C:\Users\eduar\OneDrive\PhD\UTuning')
-sys.path.insert(0, r'C:\Users\em42363\OneDrive\PhD\UTuning')
-
 from UTuning import scorer, plots, UTSearch
 
 from catboost import CatBoostRegressor ## Decision-tree based gradient boosting
