@@ -39,7 +39,7 @@ print(X_train.shape, y_train.shape)
 We define the model and the grid search space,
 we pass the model and the grid search.
 '''
-n_estimators = np.arange(180, 220, step=1) #80 150
+n_estimators = np.arange(180, 220, step=10) #80 150
 lr = np.arange(0.035, 0.06, step=.001) #0.1 0.15
 param_grid = {
     "learning_rate": list(lr),
@@ -109,6 +109,11 @@ Sigma = Data_u+Knowledge_u
 
 # %%
 score = scorer.scorer(Pred_array, y_test, Sigma)
+
+print('Accuracy = {0:2.2f}'.format(score.Accuracy()))
+print('Precision = {0:2.2f}'.format(score.Precision()))
+print('Goodness = {0:2.2f}'.format(score.Goodness()))
+
 
 IF_array = score.IndicatorFunction()
 

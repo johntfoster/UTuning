@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: Maldonado-Cruz
+    given-names: Eduardo
+    orcid:  https://orcid.org/0000-0002-6800-2614 
+title: "UTuning"
+version: 0.1.2
+doi: doi.org/10.1016/j.petrol.2021.108975
+date-released: 2021-21-11

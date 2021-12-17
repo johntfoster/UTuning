@@ -38,8 +38,6 @@ This problem can be expanded to any prediction problem.
 To start out, change our import statement to get UTuning grid search cross validation interface, and the rest is almost identical!
 
 ```python
-
-
 @author: em42363
 """
 from UTuning import scorer, plots, UTSearch
