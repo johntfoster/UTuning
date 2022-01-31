@@ -44,7 +44,7 @@ def error_line(Prediction, Truth, Sigma, Frac=1):
     ax.set_ylabel('True value, $y$ ')
     plt.show()
 
-def error_accuracy_plot(percentile,IF_array,Prediction_array,Truth,Sigma):
+def error_accuracy_plot(percentile,IF_array,Prediction_array,Truth,Sigma,minmax='True'):
     '''Simple function to draw an error line plot and its corresponding accuracy plot. 
 
     Parameters
@@ -77,15 +77,23 @@ def error_accuracy_plot(percentile,IF_array,Prediction_array,Truth,Sigma):
     fig,(ax1,ax2)=plt.subplots(1,2,figsize=(12,4))
     
     if len(Prediction_array.shape)>1:
-        xline = [0,max(np.mean(Prediction_array,axis=1).max(),Truth.max())+max(np.mean(Prediction_array,axis=1).max(),Truth.max())*0.1]#
-        yline = [0,xline[1]]#
-    
+        if minmax=='True':
+            xline = [0,max(np.mean(Prediction_array,axis=1).max(),Truth.max())+max(np.mean(Prediction_array,axis=1).max(),Truth.max())*0.1]#
+            yline = [0,xline[1]]#
+        else:
+            xline = [min(np.mean(Prediction_array,axis=1).min(),Truth.max()),max(np.mean(Prediction_array,axis=1).max(),Truth.max())+max(np.mean(Prediction_array,axis=1).max(),Truth.max())*0.1]#
+            yline = [min(np.mean(Prediction_array,axis=1).min(),Truth.min()),xline[1]]#
         ax1.errorbar(np.mean(Prediction_array,axis=1), Truth, xerr=Sigma, 
                      fmt='k.',
                      ecolor='k')
     else:
-        xline = [0,max(Prediction_array.max(),Truth.max())+max(Prediction_array.max(),Truth.max())*0.1]#
-        yline = [0,xline[1]]#
+        if minmax=='True':
+            xline = [0,max(Prediction_array.max(),Truth.max())+max(Prediction_array.max(),Truth.max())*0.1]#
+            yline = [0,xline[1]]#
+        else:
+            xline = [min(np.mean(Prediction_array,axis=1).min(),Truth.max()),max(np.mean(Prediction_array,axis=1).max(),Truth.max())+max(np.mean(Prediction_array,axis=1).max(),Truth.max())*0.1]#
+            yline = [min(np.mean(Prediction_array,axis=1).min(),Truth.min()),xline[1]]#
+            
     
         ax1.errorbar(Prediction_array, Truth, xerr=Sigma, 
                      fmt='k.',

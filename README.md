@@ -2,6 +2,9 @@
 
 Uncertainty Tuning (UTuning) is a package that focuses on summarizing uncertainty model performance for optimum hyperparameter tuning.
 
+This library uses the metric proposed by Maldonado-Cruz and Pyrcz (2021) to tune model hyperparameters based on the uncertainty model goodness metric.
+Maldonado-Cruz, E., & Pyrcz, M. J. (2021). Tuning machine learning dropout for subsurface uncertainty model accuracy. Journal of Petroleum Science and Engineering, 205, 108975. https://doi.org/https://doi.org/10.1016/j.petrol.2021.108975
+
 <p align="center">
     <img src="https://raw.githubusercontent.com/emaldonadocruz/UTuning/master/figures/CrossVal.png"/>
 </p>
@@ -29,7 +32,7 @@ This is what UTuning has to offer:
 
 ## Examples
 
-### Tune Machine Learning model with GridSearchCV
+### Tune Machine Learning uncertainty model with GridSearchCV
 In this first example we use Catboost as ensemble learner for predictions of production.
 
 For this notebook example we have a problem that consists on predicting **permeability** from **porosity** and **acoustic impedance data**. We have selected this problem because we are primarily interested in capturing the uncertainty related to predictions of permeability based on existing data. 
@@ -38,6 +41,8 @@ This problem can be expanded to any prediction problem.
 To start out, change our import statement to get UTuning grid search cross validation interface, and the rest is almost identical!
 
 ```python
+"""
+Created on Mon Sep 20 16:15:37 2021
 @author: em42363
 """
 from UTuning import scorer, plots, UTSearch
