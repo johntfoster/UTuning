@@ -110,9 +110,9 @@ Sigma = Data_u+Knowledge_u
 # %%
 score = scorer.scorer(Pred_array, y_test, Sigma)
 
-print('Accuracy = {0:2.2f}'.format(score.Accuracy()))
-print('Precision = {0:2.2f}'.format(score.Precision()))
-print('Goodness = {0:2.2f}'.format(score.Goodness()))
+# print('Accuracy = {0:2.2f}'.format(score.Accuracy()))
+# print('Precision = {0:2.2f}'.format(score.Precision()))
+# print('Goodness = {0:2.2f}'.format(score.Goodness()))
 
 
 IF_array = score.IndicatorFunction()
