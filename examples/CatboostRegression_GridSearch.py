@@ -15,6 +15,9 @@ from sklearn.preprocessing import MinMaxScaler
 import pandas as pd
 import numpy as np
 
+import matplotlib.pyplot as plt
+plt.style.use('https://raw.githubusercontent.com/emaldonadocruz/Publication_figure_style/master/Publication_figure_style.mplstyle')
+
 df = pd.read_csv("https://raw.githubusercontent.com/emaldonadocruz/UTuning/master/dataset/unconv_MV.csv") #
 
 # %% Split train test

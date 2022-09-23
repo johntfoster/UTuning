@@ -25,13 +25,13 @@ import scipy.integrate as integrate
 #                             n_jobs=1)
 #     return random_cv
 
-def RandomizedSearch(model, param_grid, cv=2, n_iter=10):
+def RandomizedSearch(model, param_grid, cv=10, n_iter=10):
 
     score = make_scorer(Goodness_loss, greater_is_better=False)
 
     random_cv = RandomizedSearchCV(model,
                                    param_grid,
-                                   cv=2,
+                                   cv=cv,
                                    n_iter=n_iter,
                                    n_jobs=-1,
                                    scoring=score,
@@ -94,8 +94,8 @@ def Goodness_loss(y_true, y_pred):
     Accuracy = integrate.simps(a, perc)
     Prec = a*(avgIndFunc-perc)
     Precision = 1-2*integrate.simps(Prec, perc)
-    #d = y_true - y_pred[:,0]
-    #mae = np.mean(abs(d))
-    return (Goodness + Accuracy + Precision)/3
-    #return (0.95*(mae) + 0.05*(1-Goodness))
+    d = y_true - y_pred[:,0]
+    mae = np.mean(abs(d))
+    #return (Accuracy+Goodness)
+    return (0.95*(Accuracy) + 0.05*(1-Goodness))
     #return mae
