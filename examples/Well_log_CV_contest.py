@@ -27,33 +27,50 @@ import numpy as np
 import matplotlib.pyplot as plt
 plt.style.use('https://raw.githubusercontent.com/emaldonadocruz/Publication_figure_style/master/Publication_figure_style.mplstyle')
 
-df = pd.read_csv("https://raw.githubusercontent.com/emaldonadocruz/UTuning/master/dataset/Well_log_dataset.csv")
+df = pd.read_csv(r"C:\Users\em42363\OneDrive\PhD\Research\DTS_DTC_UncertaintyModels\train.csv")
+df_test = pd.read_csv(r"C:\Users\em42363\OneDrive\PhD\Research\DTS_DTC_UncertaintyModels\test.csv")
+df_test_results = pd.read_csv(r"C:\Users\em42363\OneDrive\PhD\Research\DTS_DTC_UncertaintyModels\Test_values.csv")
+# %%
+
+df.info()
 
 # %% Split train test
 '''
 Perform split train test, and perform data min-max normalization
 '''
 
-y = df['DT'].values
+y_train = df['DTC'].values
 #y = df['DTS'].values
-X = df[['DEPTH', 'CALI', 'DRHO', 'GR', 'NPHI', 'PEF', 'log_RACEHM', 'log_RACELM', 'RHOB', 'log_RPCEHM', 'log_RPCELM']].values
+X_train = df[['CAL', 'CNC', 'GR', 'HRD', 'HRM', 'PE', 'ZDEN']].values
+
+#y_test = df_test['DTC'].values
+#y = df['DTS'].values
+X_test = df_test[['CAL', 'CNC', 'GR', 'HRD', 'HRM', 'PE', 'ZDEN']].values
+y_test = df_test_results['DTC'].values
 
 scaler = MinMaxScaler()
-scaler.fit(X)
-Xs = scaler.transform(X)
-ys = (y - y.min())/ (y.max()-y.min())
+scaler.fit(X_train)
+X_train = scaler.transform(X_train)
+y_train= (y_train- y_train.min())/ (y_train.max()-y_train.min())
 
-X_train, X_test, y_train, y_test = train_test_split(Xs, ys, test_size=0.33)
+scaler = MinMaxScaler()
+scaler.fit(X_test)
+X_test = scaler.transform(X_test)
+#y_test = (y_test - y_test.min())/ (y_test.max()-y_test.min())
 
-print(X_train.shape, y_train.shape)
+#X_train, X_test, y_train, y_test = train_test_split(Xs, ys, test_size=0.33)
+
+
+#print(X_train.shape, y_train.shape)
 
 # %% Model creation
 '''
 We define the model and the grid search space,
 we pass the model and the grid search.
 '''
-n_estimators = np.arange(240, 300, step=20) #80 150
-lr = np.arange(0.027, 0.037, step=.001) #0.1 0.15
+n_estimators = np.arange(200, 2200, step=200) #80 150
+lr = np.arange(0.01, 0.08, step=.01) #0.1 0.15
+
 param_grid = { 
     "learning_rate": list(lr),
     "n_estimators": list(n_estimators)
@@ -85,7 +102,7 @@ plots.surface(df['param_n_estimators'],
               labels)
 # %%
 df = pd.DataFrame(random_cv.cv_results_)
-df.to_csv('Grid_search_well_logs_CV.csv')
+#df.to_csv('Grid_search_well_logs_2_New.csv')
 
 
 # %% Virtual ensemble

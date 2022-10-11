@@ -3,7 +3,7 @@
 from UTuning import scorer
 import numpy as np
 
-from sklearn.metrics import make_scorer, mean_absolute_error
+from sklearn.metrics import make_scorer, mean_absolute_error, mean_squared_error
 from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
 import scipy.integrate as integrate
 
@@ -97,5 +97,8 @@ def Goodness_loss(y_true, y_pred):
     d = y_true - y_pred[:,0]
     mae = np.mean(abs(d))
     #return (Accuracy+Goodness)
-    return (0.95*(Accuracy) + 0.05*(1-Goodness))
+    #return (0.95*(Accuracy) + 0.05*(1-Goodness))
+    mse = mean_squared_error(y_true, np.mean(y_pred,axis=1))
+    #return 1-(0.5*mae+0.5*(1-Goodness))
+    return mse
     #return mae
